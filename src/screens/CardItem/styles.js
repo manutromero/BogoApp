@@ -2,30 +2,6 @@ import { StyleSheet } from 'react-native';
 import { useFonts, Bitter_700Bold, Bitter_400Regular} from '@expo-google-fonts/bitter';
 
 export default StyleSheet.create({
-    container:{
-      flex:1
-    },
-    containerWebView: {
-        width: '100%',
-        height: 20
-      },
-      HomeImage:{
-        width: '100'
-      },
-      TextTitleApp:{
-        fontSize: 40,
-        textAlign: "center",
-        margin: 5,
-        fontFamily: 'Bitter_700Bold'
-      },
-      TitleSection:{
-        fontSize: 25,
-        textAlign: "left",
-        margin: 5,
-        fontFamily: 'Bitter_700Bold',
-        marginRight: 15,
-        marginLeft: 15
-      },
       wrapperCardRoute:{
         marginTop: 10,
         marginBottom: 10,
@@ -35,7 +11,8 @@ export default StyleSheet.create({
         borderTopWidth: 1
       },
       icon: {
-        color: 'black'
+        color: 'black',
+        marginRight: 5
       },
       TitleCard:{
         fontSize: 21,

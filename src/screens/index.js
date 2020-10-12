@@ -1,4 +1,6 @@
 export { default as LoginScreen } from './LoginScreen/LoginScreen'
 export { default as Home } from './Home/Home'
+export { default as CardDetails } from './CardDetails/CardDetails'
+export { default as CardItem } from './CardItem/CardItem'
 export { default as HomeScreen } from './HomeScreen/HomeScreen'
 export { default as RegistrationScreen } from './RegistrationScreen/RegistrationScreen'

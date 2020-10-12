@@ -1,19 +1,35 @@
-import React, { useEffect, useState } from 'react'
-import { View , Text} from 'react-native';
+import React, { Component, useEffect, useState } from 'react'
+import { View , Text, Image, FlatList} from 'react-native';
 import styles from './styles';
-import { WebView } from 'react-native-webview';
+import CardItem from '../CardItem/CardItem'
 
-export default function Home(props) {
+export default function Home({navigation}) {
 
-    return (
-      <View style={styles.container}>
-      <Text>Hola Mundo</Text>
-      <View  style={styles.containerWebView}>
-        <WebView
-                  source={{ uri: 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/439904874&color=%23848c9c&inverse=false&auto_play=false&show_user=true' }}
-              />
-      </View>
-      </View>
-      
-    );
+  const [query] = useState([{Hola: "Mundo"},{Hola: "Mundo"},{Hola: "Mundo"},{Hola: "Mundo"},{Hola: "Mundo"},{Hola: "Mundo"},]);
+  
+  console.log("Hola Mundo",query)
+  
+  const ClickFuntion = () =>{
+    console.log("click")
+    
+    navigation.navigate('CardDetails')
   }
+  return (
+    <View style={styles.container}>
+    <Text style={styles.TextTitleApp}>BogoApp</Text>
+    <View>
+      <Image source={require('../../assets/Images/Home-PlazaBolivar.jpg')} style = {{height: 250,width: "100%", resizeMode : 'stretch' }} />
+    </View>
+    <View>
+      <Text onPress={ClickFuntion} style={styles.TitleSection}>Nuestras Rutas</Text> 
+      
+      <FlatList
+        data={query}
+        horizontal={false}
+        renderItem={({ item }) => <CardItem onPress={() => ClickFuntion()}/>}
+      /> 
+    </View>
+  </View>
+  );
+
+}
