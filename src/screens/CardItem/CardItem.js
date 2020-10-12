@@ -5,33 +5,28 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import {  faClock , faMapMarkerAlt, faLandmark, faStarHalfAlt, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 
-export default function CardItem({onPress}) {
-
+export default function CardItem({item, onPress}) {
 
     return (
         <Pressable onPress={onPress}>
             <View style={styles.wrapperCardRoute}>
-                <Text style={styles.TitleCard}>Bogotazo</Text>
-                <Text style={styles.TextIndoCard}>Considerado el hecho historico mas importande de la cuidad</Text>
+                <Text style={styles.TitleCard}>{item.TitleRoute}</Text>
+                <Text style={styles.TextIndoCard}> {item.ShortDescription} </Text>
                 <View style={styles.wrapperInfoPoints}>
                     <View style={styles.itemPoins}>
                     <FontAwesomeIcon icon={ faMapMarkerAlt } />
-                    <Text>Tiempo </Text>             
+                    <Text> {item.Poinst} Puntos </Text>             
                     </View>
                     <View  style={styles.itemPoins}>
                         <FontAwesomeIcon icon={ faClock }  />
-                        <Text>80 minutos </Text>             
+                        <Text>{item.Time} minutos </Text>             
                     </View>
                     <View  style={styles.itemPoins}>
                         <FontAwesomeIcon icon={ faLandmark }  />
-                        <Text> 5 Sitios de interes </Text>             
+                        <Text> {item.PointsInterest} Sitios de interes </Text>             
                     </View>
                 </View>
                 <View style={styles.wrapperInfoPoints}>
-                    <View  style={styles.itemPoins}>
-                        <FontAwesomeIcon icon={ faStarHalfAlt }  />
-                        <Text> Muy Popular </Text>             
-                    </View>
                     <View  style={styles.itemPoins}>
                         <Text> Elegir Ruta </Text>    
                         <FontAwesomeIcon icon={ faChevronRight } />         

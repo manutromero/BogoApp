@@ -1,15 +1,44 @@
 import React, { useEffect, useState } from 'react'
 import { View , Text, Image, Pressable} from 'react-native';
 import styles from './styles';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import {  faClock , faMapMarkerAlt, faLandmark, faStarHalfAlt, faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import { firebase } from '../../firebase/config';
 
-export default function CardDetails({navigation}) {
+export default function CardDetails(props) {
+    const DataRoute =  props.route.params.item
+    const RouteID = DataRoute.RouteID
+    const [RouteData, SetRouteData] = useState([])
+    const entityDetails = firebase.firestore().collection('RouteDetails')
 
+    useEffect(()=>{
+        console.log("Usando el Use efect")
+        entityDetails.where("RouteID", "==", RouteID)
+        .onSnapshot(querySnapshot => {
+            const newEntities = []
+            querySnapshot.forEach(doc => {
+                const entity = doc.data()
+                newEntities.push(entity)
+            });
+            SetRouteData(newEntities)
+        },
+        error => {
+            console.log(error)
+        })
+    }, [])
 
-    return (
-        <View>
-            <Text>HOLA DESDE CARD DETAILS</Text>
-        </View>
-    );
+    const Element = RouteData[0]
+
+    if(Element){
+        return (
+            <View>
+                <Text>HOLA DESDE CARD DETAILSs {Element.TitleRoute}</Text>
+            </View>
+        ); 
+    }else{
+        return (
+            <View>
+                <Text>Cargando</Text>
+            </View>
+        );
+    }
+ 
   }

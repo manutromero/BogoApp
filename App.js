@@ -48,6 +48,9 @@ export default function App() {
         { user ? (
           <>
             <Stack.Screen name="Home" component={Home} />
+            {/* <Stack.Screen name="Home">
+              {props => <HomeScreen {...props} extraData={user} />}
+            </Stack.Screen> */}
             <Stack.Screen name="CardDetails" component={CardDetails} />
           </>
         ) : (

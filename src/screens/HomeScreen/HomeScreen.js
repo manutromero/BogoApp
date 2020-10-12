@@ -31,7 +31,7 @@ export default function HomeScreen(props) {
                 }
             )
     }, [])
-
+    
     const onAddButtonPress = () => {
         if (entityText && entityText.length > 0) {
             const timestamp = firebase.firestore.FieldValue.serverTimestamp();

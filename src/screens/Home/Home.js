@@ -2,18 +2,34 @@ import React, { Component, useEffect, useState } from 'react'
 import { View , Text, Image, FlatList} from 'react-native';
 import styles from './styles';
 import CardItem from '../CardItem/CardItem'
+import { firebase } from '../../firebase/config';
+
 
 export default function Home({navigation}) {
+  const [RouteShortData, setRouteShortData] = useState([])
+  const RouteEntity = firebase.firestore().collection('Routes')
 
-  const [query] = useState([{Hola: "Mundo"},{Hola: "Mundo"},{Hola: "Mundo"},{Hola: "Mundo"},{Hola: "Mundo"},{Hola: "Mundo"},]);
-  
-  console.log("Hola Mundo",query)
-  
-  const ClickFuntion = () =>{
-    console.log("click")
-    
-    navigation.navigate('CardDetails')
-  }
+  useEffect(()=>{
+    console.log("Usando el Use efect")
+    RouteEntity.onSnapshot(querySnapshot => {
+        const newEntities = []
+        querySnapshot.forEach(doc => {
+            const entity = doc.data()
+            newEntities.push(entity)
+        });
+        setRouteShortData(newEntities)
+    },
+    error => {
+        console.log(error)
+    })
+}, [])
+
+  console.log("RouteShortData",RouteShortData)
+
+  const ClickFuntion = (item) =>{
+      console.log("item--",item)
+      navigation.navigate('CardDetails',{item})
+    }
   return (
     <View style={styles.container}>
     <Text style={styles.TextTitleApp}>BogoApp</Text>
@@ -22,11 +38,10 @@ export default function Home({navigation}) {
     </View>
     <View>
       <Text onPress={ClickFuntion} style={styles.TitleSection}>Nuestras Rutas</Text> 
-      
       <FlatList
-        data={query}
+        data={RouteShortData}
         horizontal={false}
-        renderItem={({ item }) => <CardItem onPress={() => ClickFuntion()}/>}
+        renderItem={({ item }) => <CardItem item={item} onPress={() => ClickFuntion(item)}/>}
       /> 
     </View>
   </View>
