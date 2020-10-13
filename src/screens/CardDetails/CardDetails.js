@@ -10,10 +10,13 @@ export default function CardDetails(props) {
     const RouteID = DataRoute.RouteID
     const [RouteData, SetRouteData] = useState([])
     const entityDetails = firebase.firestore().collection('RouteDetails')
-    const LATITUDE = 4.510295;
-    const LONGITUDE = -74.112527;
+
+    const [LATITUDE, SetLATITUDE] = useState(0)
+    const [LONGITUDE, SetLONGITUDE] = useState(0)
+
     const origin = {latitude: LATITUDE, longitude: LONGITUDE};
-    const destination = {latitude: 4.604485, longitude: -74.069724};
+  
+    const destination = {latitude: 4.531460, longitude: -74.118525};
     const { width, height } = Dimensions.get('window');
     const ASPECT_RATIO = width / height;
    
@@ -23,7 +26,6 @@ export default function CardDetails(props) {
 
 
     useEffect(()=>{
-        console.log("Usando el Use efect")
         entityDetails.where("RouteID", "==", RouteID)
         .onSnapshot(querySnapshot => {
             const newEntities = []
@@ -36,26 +38,48 @@ export default function CardDetails(props) {
         error => {
             console.log(error)
         })
+
+        navigator.geolocation.getCurrentPosition(position => {
+            console.log(position, "MI ubicacion")
+            SetLATITUDE(position.coords.latitude)
+            SetLONGITUDE(position.coords.longitude)
+        }, error => {
+            console.log("error",error)
+        },{enableHighAccuracy: true, timeout: 20000, maximumAge: 1000})
+
     }, [])
 
     const Element = RouteData[0]
+
 
     if(Element){
         return (
             <View>
                 <Text>HOLA DESDE CARD DETAILS {Element.TitleRoute}</Text>
+                
+                {LATITUDE ? 
+                
                 <MapView initialRegion={{
-                    latitude: LATITUDE,
-                    longitude: LONGITUDE,
+                    latitude: 4.510295,
+                    longitude: -74.112527,
                     latitudeDelta: LATITUDE_DELTA,
                     longitudeDelta: LONGITUDE_DELTA,
                 }}  style={styles.mapStyle}>
+                    <MapView.Marker coordinate={origin} />
+                    <MapView.Marker coordinate={destination} />
                     <MapViewDirections
                         origin={origin}
                         destination={destination}
                         apikey={GOOGLE_MAPS_APIKEY}
                     />
+                     <MapViewDirections
+                        origin={{latitude:  4.755079, longitude: -74.044932}}
+                        destination={{latitude:  4.762826, longitude: -74.046279}}
+                        apikey={GOOGLE_MAPS_APIKEY}
+                    />
                 </MapView>
+                 : <Text>CARGANDO MAPITA</Text>}
+              
             </View>
         ); 
     }else{
