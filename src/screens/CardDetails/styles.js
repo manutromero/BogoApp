@@ -2,13 +2,12 @@ import { StyleSheet , Dimensions} from 'react-native';
 
 export default StyleSheet.create({
     containerWebView: {
-        flex: 1,
+       flex: 1,
         width: '100%',
-        height: 100
       },
       mapStyle: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
+        height: Dimensions.get('window').height/3,
       },
     container: {
         flex: 1,
