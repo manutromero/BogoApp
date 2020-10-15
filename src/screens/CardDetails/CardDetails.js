@@ -5,8 +5,10 @@ import { firebase } from '../../firebase/config';
 import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import { ScrollView } from 'react-native-gesture-handler';
+import { WebView } from 'react-native-webview';
 
 export default function CardDetails(props) {
+
     const DataRoute =  props.route.params.item
     const RouteID = DataRoute.RouteID
     const [RouteData, SetRouteData] = useState([])
@@ -57,111 +59,73 @@ export default function CardDetails(props) {
         return (
             <View>
                 <ScrollView>
-                <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                <View>
-                    {LATITUDE ? 
-                        <MapView initialRegion={{
-                            latitude: 4.510295,
-                            longitude: -74.112527,
-                            latitudeDelta: LATITUDE_DELTA,
-                            longitudeDelta: LONGITUDE_DELTA,
-                        }}  style={styles.mapStyle}>
-                            <MapView.Marker coordinate={origin} />
-                            <MapView.Marker coordinate={destination} />
-                            <MapView.Marker coordinate={{latitude:  4.762826, longitude: -74.046279}} />
-                            <MapViewDirections
-                                origin={origin}
-                                destination={destination}
-                                apikey={GOOGLE_MAPS_APIKEY}
-                                mode={"WALKING"}
+                    <Image source={require('../../assets/Images/ElBogotazo.jpg')} style = {{height: 250,width: "100%", resizeMode : 'stretch' }} />
+                    <View style={styles.marginGeneral}> 
+                        <Text style={styles.TitleCard}>Antes de empezar...</Text>
+                        <View style={styles.containerWebView}>
+                            <WebView style={styles.containerWebViewMap}
+                            source={{ uri: 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/439904874&color=%23848c9c&inverse=false&auto_play=false&show_user=true' }}
                             />
-                            <MapViewDirections
-                                origin={destination}
-                                destination={{latitude:  4.762826, longitude: -74.046279}}
-                                apikey={GOOGLE_MAPS_APIKEY}
-                                mode={"WALKING"}
-                            />
-                        </MapView>
-                        : <Text>CARGANDO MAPITA</Text>}
-                 </View>
-                    <View>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
-                    <Text>RUTA HISTORICA {Element.TitleRoute}</Text>
+                        </View> 
+                        <Text style={styles.TitleCard}>Ruta Historica</Text>
+                        {/* INICIO MAPA */}
+                        <View>
+                            {LATITUDE ? 
+                                <MapView initialRegion={{
+                                    latitude: 4.510295,
+                                    longitude: -74.112527,
+                                    latitudeDelta:  0.009,
+                                    longitudeDelta:  0.009,
+                                }}  style={styles.mapStyle}>
+                                    <MapView.Marker coordinate={origin} />
+                                    <MapView.Marker coordinate={destination} />
+                                    <MapView.Marker coordinate={{latitude:  4.762826, longitude: -74.046279}} />
+                                    <MapViewDirections
+                                        origin={origin}
+                                        destination={destination}
+                                        apikey={GOOGLE_MAPS_APIKEY}
+                                        mode={"WALKING"}
+                                    />
+                                    <MapViewDirections
+                                        origin={destination}
+                                        destination={{latitude:  4.762826, longitude: -74.046279}}
+                                        apikey={GOOGLE_MAPS_APIKEY}
+                                        mode={"WALKING"}
+                                    />
+                                </MapView>
+                                : <Text>CARGANDO MAPITA</Text>}
+                        </View>
+                        {/* FIN MAPA */}
+                        <View>
+                        <Text style={styles.TitleCard}>Los Puntos</Text>
+                        <View>
+                            <View>
+                                <Text>Casa de juan roa sierra</Text>
+                                <Text>En esta parada conoceremos un poco de la historia de juan roa 
+                                sierra persona que termina con la vida de jorge eliecer gaitan</Text>
+                            </View>
+                            <View>
+                                <Text>Casa de juan roa sierra</Text>
+                                <Text>En esta parada conoceremos un poco de la historia de juan roa 
+                                sierra persona que termina con la vida de jorge eliecer gaitan</Text>
+                            </View>
+                            <View>
+                                <Text>Casa de juan roa sierra</Text>
+                                <Text>En esta parada conoceremos un poco de la historia de juan roa 
+                                sierra persona que termina con la vida de jorge eliecer gaitan</Text>
+                            </View>
+                            <View>
+                                <Text>Casa de juan roa sierra</Text>
+                                <Text>En esta parada conoceremos un poco de la historia de juan roa 
+                                sierra persona que termina con la vida de jorge eliecer gaitan</Text>
+                            </View>
+                        </View>
+
                     </View>
-                 </ScrollView>
+                        
+                    </View>
+                 
+                </ScrollView>
             </View>
         ); 
     }else{
