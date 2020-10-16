@@ -6,6 +6,8 @@ import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import { ScrollView } from 'react-native-gesture-handler';
 import { WebView } from 'react-native-webview';
+import { Spinner } from 'native-base';
+
 
 export default function CardDetails(props) {
 
@@ -93,7 +95,7 @@ export default function CardDetails(props) {
                                         mode={"WALKING"}
                                     />
                                 </MapView>
-                                : <Text>CARGANDO MAPITA</Text>}
+                                :  <Spinner color='green' />}
                         </View>
                         {/* FIN MAPA */}
                         <View>
@@ -131,7 +133,7 @@ export default function CardDetails(props) {
     }else{
         return (
             <View>
-                <Text>Cargando</Text>
+                 <Spinner color='green' />
             </View>
         );
     }
