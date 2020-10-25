@@ -1,0 +1,46 @@
+[
+    {
+        "Points": 1,
+        "Title": "Casa de Juan Roa Sierra",
+        "Address": "calle 8a. No. 30-73",
+        "latitude": 4.645777,
+        "longitude":-74.148732,
+        "Description": "Este punto conoceremos un poco de la historia de juan roa sierra persona que termina cn la vida de jorge Eliecer gaitan",
+        "Audio": [
+            {
+                "TitleAudio": "Historia de Juan Sierra",
+                "URL": "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/315560867&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
+            }
+        ],
+        "Images": ["https://firebasestorage.googleapis.com/v0/b/bogoapp-59711.appspot.com/o/PalacioDeJusticia-2.jpg?alt=media&token=18651b3d-d9d1-42be-8521-e952bd146936"],
+        "RelatedData":[
+            {
+                "title": "Juan Roa Sierra: El nombre del olvido",
+                "Description": "Pieza audiovisual sobre Juan Roa Sierra, asesino material de Jorge Eliecer Gaitán y una mirada a 'El Bogotazo' desde la perspectiva del victimario, no de la víctima, apoyada en la película 'Roa' de 2013.",
+                "URL": "https://www.youtube.com/watch?v=xYff-B2rLIU&ab_channel=JuanRoaSierra"
+            }
+        ]
+    },
+    {
+        "Points": 2,
+        "Title": "Lugar Muerte Jorge Eliecer Gaitan",
+        "Address": " carrera 7.ª con calle 13",
+        "latitude": 4.601314,
+        "longitude":-74.073456,
+        "Description": "ue asesinado a quemarropa en la puerta del edificio de la carrera 7.ª con calle 13, donde tenía su oficina, por Juan Roa Sierra.",
+        "Audio": [
+            {
+                "TitleAudio": "Historia de Juan Sierra",
+                "URL": "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/315560867&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
+            }
+        ],
+        "Images": ["https://firebasestorage.googleapis.com/v0/b/bogoapp-59711.appspot.com/o/PalacioDeJusticia-2.jpg?alt=media&token=18651b3d-d9d1-42be-8521-e952bd146936"],
+        "RelatedData":[
+            {
+                "title": "Juan Roa Sierra: El nombre del olvido",
+                "Description": "Pieza audiovisual sobre Juan Roa Sierra, asesino material de Jorge Eliecer Gaitán y una mirada a 'El Bogotazo' desde la perspectiva del victimario, no de la víctima, apoyada en la película 'Roa' de 2013.",
+                "URL": "https://www.youtube.com/watch?v=xYff-B2rLIU&ab_channel=JuanRoaSierra"
+            }
+        ]
+    }
+]

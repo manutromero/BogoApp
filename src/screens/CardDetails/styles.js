@@ -17,7 +17,7 @@ export default StyleSheet.create({
       },
       mapStyle: {
         width: Dimensions.get('window').width/1.1,
-        height: Dimensions.get('window').height/3,
+        height: Dimensions.get('window').height/2,
       },
       marginGeneral:{
         marginLeft:15,

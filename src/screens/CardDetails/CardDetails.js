@@ -39,11 +39,12 @@ export default function CardDetails(props) {
                 newEntities.push(entity)
             });
             SetRouteData(newEntities)
+            console.log("newEntities",newEntities)
         },
         error => {
             console.log(error)
         })
-
+      
         navigator.geolocation.getCurrentPosition(position => {
             console.log(position, "MI ubicacion")
             SetLATITUDE(position.coords.latitude)
@@ -56,12 +57,34 @@ export default function CardDetails(props) {
 
     const Element = RouteData[0]
 
+    const renderPin = (Element) => {
+        let renderMapPin = [];
+
+        for (let index = 0; index < Element.Points.length; index++) {
+            const beforeElement = Element.Points[index-1]
+            const element = Element.Points[index];
+            renderMapPin.push(
+                <View>
+                    <MapView.Marker coordinate={{latitude:  element.GeoCoordinates.latitude, longitude: element.GeoCoordinates.longitude}} />
+                    <MapViewDirections
+                        origin={ index == 0 ? origin : {latitude:  beforeElement.GeoCoordinates.latitude, longitude: beforeElement.GeoCoordinates.longitude}}
+                        destination={{latitude:  element.GeoCoordinates.latitude, longitude: element.GeoCoordinates.longitude}}
+                        apikey={GOOGLE_MAPS_APIKEY}
+                        mode={"TRANSIT"}
+                        strokeWidth={4}
+                        strokeColor={element.strokeColor}
+                    />
+                </View>
+            )
+        }
+        return renderMapPin
+    }
 
     if(Element){
         return (
             <View>
                 <ScrollView>
-                    <Image source={require('../../assets/Images/ElBogotazo.jpg')} style = {{height: 250,width: "100%", resizeMode : 'stretch' }} />
+                    <Image  source={{uri: Element.Image}} style = {{height: 250,width: "100%", resizeMode : 'stretch' }} />
                     <View style={styles.marginGeneral}> 
                         <Text style={styles.TitleCard}>Antes de empezar...</Text>
                         <View style={styles.containerWebView}>
@@ -74,32 +97,20 @@ export default function CardDetails(props) {
                         <View>
                             {LATITUDE ? 
                                 <MapView initialRegion={{
-                                    latitude: 4.510295,
-                                    longitude: -74.112527,
+                                    latitude: LATITUDE,
+                                    longitude: LONGITUDE,
                                     latitudeDelta:  0.009,
                                     longitudeDelta:  0.009,
-                                }}  style={styles.mapStyle}>
+                                }}  style={styles.mapStyle} >
                                     <MapView.Marker coordinate={origin} />
-                                    <MapView.Marker coordinate={destination} />
-                                    <MapView.Marker coordinate={{latitude:  4.762826, longitude: -74.046279}} />
-                                    <MapViewDirections
-                                        origin={origin}
-                                        destination={destination}
-                                        apikey={GOOGLE_MAPS_APIKEY}
-                                        mode={"WALKING"}
-                                    />
-                                    <MapViewDirections
-                                        origin={destination}
-                                        destination={{latitude:  4.762826, longitude: -74.046279}}
-                                        apikey={GOOGLE_MAPS_APIKEY}
-                                        mode={"WALKING"}
-                                    />
+                                    {renderPin(Element)}
                                 </MapView>
                                 :  <Spinner color='green' />}
                         </View>
                         {/* FIN MAPA */}
                         <View>
                         <Text style={styles.TitleCard}>Los Puntos</Text>
+                 
                         <View>
                             <View>
                                 <Text>Casa de juan roa sierra</Text>
