@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import { View , Text, Image,Dimensions , StyleSheet, Pressable} from 'react-native';
+import {Image,Dimensions , StyleSheet, Pressable} from 'react-native';
 import styles from './styles';
 import { firebase } from '../../firebase/config';
 import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import { ScrollView } from 'react-native-gesture-handler';
 import { WebView } from 'react-native-webview';
-import { Spinner } from 'native-base';
+import { Spinner, Container, Header, Content, Icon, Accordion, Text, View , Card, CardItem, Button} from 'native-base';
+import { render } from 'react-dom';
 
 
 export default function CardDetails(props) {
 
     const DataRoute =  props.route.params.item
     const RouteID = DataRoute.RouteID
+    
     const [RouteData, SetRouteData] = useState([])
+    const [dataArray, SetdataArray] = useState([])
+
+
     const entityDetails = firebase.firestore().collection('RouteDetails')
 
     const [LATITUDE, SetLATITUDE] = useState(0)
@@ -31,22 +36,34 @@ export default function CardDetails(props) {
 
 
     useEffect(()=>{
+
+        //Peticion a firebase
         entityDetails.where("RouteID", "==", RouteID)
         .onSnapshot(querySnapshot => {
             const newEntities = []
+            const dataArray = []
             querySnapshot.forEach(doc => {
                 const entity = doc.data()
                 newEntities.push(entity)
+          
+                //Listado datos de puntos
+                entity.Points.forEach(item => {
+                    dataArray.push(
+                        { title: item.Point + ". " +item.Title, content: item.Description, Color: "fff" }
+                    )
+                })
+                
             });
             SetRouteData(newEntities)
-            console.log("newEntities",newEntities)
+            SetdataArray(dataArray)
         },
         error => {
             console.log(error)
         })
       
+
+        //Se Obtiene la ubicacion del usuario
         navigator.geolocation.getCurrentPosition(position => {
-            console.log(position, "MI ubicacion")
             SetLATITUDE(position.coords.latitude)
             SetLONGITUDE(position.coords.longitude)
         }, error => {
@@ -56,6 +73,7 @@ export default function CardDetails(props) {
     }, [])
 
     const Element = RouteData[0]
+    
 
     const renderPin = (Element) => {
         let renderMapPin = [];
@@ -63,9 +81,10 @@ export default function CardDetails(props) {
         for (let index = 0; index < Element.Points.length; index++) {
             const beforeElement = Element.Points[index-1]
             const element = Element.Points[index];
+
             renderMapPin.push(
-                <View>
-                    <MapView.Marker coordinate={{latitude:  element.GeoCoordinates.latitude, longitude: element.GeoCoordinates.longitude}} />
+                <View key={index}>
+                    <MapView.Marker   coordinate={{latitude:  element.GeoCoordinates.latitude, longitude: element.GeoCoordinates.longitude}} />
                     <MapViewDirections
                         origin={ index == 0 ? origin : {latitude:  beforeElement.GeoCoordinates.latitude, longitude: beforeElement.GeoCoordinates.longitude}}
                         destination={{latitude:  element.GeoCoordinates.latitude, longitude: element.GeoCoordinates.longitude}}
@@ -80,64 +99,62 @@ export default function CardDetails(props) {
         return renderMapPin
     }
 
+
     if(Element){
+
         return (
             <View>
                 <ScrollView>
-                    <Image  source={{uri: Element.Image}} style = {{height: 250,width: "100%", resizeMode : 'stretch' }} />
                     <View style={styles.marginGeneral}> 
-                        <Text style={styles.TitleCard}>Antes de empezar...</Text>
-                        <View style={styles.containerWebView}>
-                            <WebView style={styles.containerWebViewMap}
-                            source={{ uri: 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/439904874&color=%23848c9c&inverse=false&auto_play=false&show_user=true' }}
-                            />
-                        </View> 
-                        <Text style={styles.TitleCard}>Ruta Historica</Text>
-                        {/* INICIO MAPA */}
-                        <View>
-                            {LATITUDE ? 
-                                <MapView initialRegion={{
-                                    latitude: LATITUDE,
-                                    longitude: LONGITUDE,
-                                    latitudeDelta:  0.009,
-                                    longitudeDelta:  0.009,
-                                }}  style={styles.mapStyle} >
-                                    <MapView.Marker coordinate={origin} />
-                                    {renderPin(Element)}
-                                </MapView>
-                                :  <Spinner color='green' />}
+                        <Card>
+                            <CardItem header bordered>
+                                <Text>{Element.TitleRoute}</Text>
+                            </CardItem>
+                            <Image  source={{uri: Element.Image}} style = {{height: 250,width: "100%", resizeMode : 'stretch' }} />
+                            <CardItem header bordered>
+                                <Text>Antes de empezar...</Text>
+                            </CardItem>
+                            <View style={styles.containerWebView}>
+                                <WebView style={styles.containerWebViewMap}
+                                    source={{ uri: 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/439904874&color=%23848c9c&inverse=false&auto_play=false&show_user=true' }}
+                                    />
+                            </View> 
+                            <CardItem header bordered>
+                                <Text>Ruta Historica</Text>
+                            </CardItem>
+                            {/* INICIO MAPA */}
+                            <View>
+                                {LATITUDE ? 
+                                    <MapView initialRegion={{
+                                        latitude: LATITUDE,
+                                        longitude: LONGITUDE,
+                                        latitudeDelta:  0.009,
+                                        longitudeDelta:  0.009,
+                                    }}  style={styles.mapStyle}  showsUserLocation = {true}  >
+                                        <MapView.Marker coordinate={origin} />
+                                        {renderPin(Element)}
+                                    </MapView>
+                                    :  <Spinner color='green' />}
+                            </View>
+                                {/* FIN MAPA */}
+                            <View>
+                            <CardItem header bordered>
+                                <Text>Tus Paradas</Text>
+                            </CardItem>
+                            <Content padder>
+                                <Accordion
+                                    dataArray={dataArray}
+                                    headerStyle={{ backgroundColor: "#b7daf8" }}
+                                    contentStyle={{ backgroundColor: "#ddecf8" }}
+                                />
+                            </Content>
                         </View>
-                        {/* FIN MAPA */}
-                        <View>
-                        <Text style={styles.TitleCard}>Los Puntos</Text>
-                 
-                        <View>
-                            <View>
-                                <Text>Casa de juan roa sierra</Text>
-                                <Text>En esta parada conoceremos un poco de la historia de juan roa 
-                                sierra persona que termina con la vida de jorge eliecer gaitan</Text>
-                            </View>
-                            <View>
-                                <Text>Casa de juan roa sierra</Text>
-                                <Text>En esta parada conoceremos un poco de la historia de juan roa 
-                                sierra persona que termina con la vida de jorge eliecer gaitan</Text>
-                            </View>
-                            <View>
-                                <Text>Casa de juan roa sierra</Text>
-                                <Text>En esta parada conoceremos un poco de la historia de juan roa 
-                                sierra persona que termina con la vida de jorge eliecer gaitan</Text>
-                            </View>
-                            <View>
-                                <Text>Casa de juan roa sierra</Text>
-                                <Text>En esta parada conoceremos un poco de la historia de juan roa 
-                                sierra persona que termina con la vida de jorge eliecer gaitan</Text>
-                            </View>
-                        </View>
-
+                            <Button block success>
+                                <Text>Seleccionar Ruta</Text>
+                            </Button>  
+                        </Card>
                     </View>
-                        
-                    </View>
-                 
+                             
                 </ScrollView>
             </View>
         ); 

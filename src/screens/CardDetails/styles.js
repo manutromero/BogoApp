@@ -7,8 +7,10 @@ export default StyleSheet.create({
         marginTop: 10
     },
     containerWebViewMap:{
-        width: '100%',
-        height: 20
+        width: '90%',
+        height: 20,
+        marginLeft: "5%",
+        marginTop: "3%"
     },
     containerWebView: {
        flex: 1,
@@ -16,11 +18,11 @@ export default StyleSheet.create({
         marginBottom: 20
       },
       mapStyle: {
-        width: Dimensions.get('window').width/1.1,
-        height: Dimensions.get('window').height/2,
+        width: Dimensions.get('window').width/1.05,
+        height: Dimensions.get('window').height/2
       },
       marginGeneral:{
-        marginLeft:15,
-        marginRight:15
+        marginLeft:5,
+        marginRight:5
       }
 })

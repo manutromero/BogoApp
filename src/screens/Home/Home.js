@@ -12,7 +12,6 @@ export default function Home({navigation}) {
   const RouteEntity = firebase.firestore().collection('Routes')
 
   useEffect(()=>{
-    console.log("Usando el Use efect")
     RouteEntity.onSnapshot(querySnapshot => {
         const newEntities = []
         querySnapshot.forEach(doc => {
@@ -26,26 +25,29 @@ export default function Home({navigation}) {
     })
 }, [])
 
-  console.log("RouteShortData",RouteShortData)
 
   const ClickFuntion = (item) =>{
-      console.log("item--",item)
       navigation.navigate('CardDetails',{item})
     }
   return (
     <View>
       <ScrollView>
-        <View>
-          <Image source={require('../../assets/Images/Home-Image.jpg')} style = {{height: 250,width: "100%", resizeMode : 'stretch' }} />
-        </View>
-        <View>
-          <Text onPress={ClickFuntion} style={styles.TitleSection}>Nuestras Rutas</Text> 
-          <FlatList
-            data={RouteShortData}
-            horizontal={false}
-            renderItem={({ item }) => <CardsItem item={item} onPress={() => ClickFuntion(item)}/>}
-          /> 
-        </View>
+        <Card>
+              <View>
+                <Image source={require('../../assets/Images/Home-Image.jpg')} style = {{height: 250,width: "100%", resizeMode : 'stretch' }} />
+              </View>
+            </Card>
+            <View>
+              <CardItem header bordered>
+                <Text onPress={ClickFuntion}>Nuestras Rutas</Text> 
+              </CardItem>
+              <FlatList
+                data={RouteShortData}
+                horizontal={false}
+                renderItem={({ item }) => <CardsItem item={item} onPress={() => ClickFuntion(item)}/>}
+              /> 
+            </View>
+     
     </ScrollView>
   </View>
   );

@@ -34,6 +34,8 @@ export default function App() {
         setLoading(false)
       }
     });
+
+
   }, []);
 
   if (loading) {
@@ -45,8 +47,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-      <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="CardDetails" component={CardDetails} />
+      <Stack.Screen name="Home" component={Home}  options={{ title: 'BogoApp' }}/>
+            <Stack.Screen name="CardDetails" component={CardDetails}  options={{ title: 'Tu Ruta' }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
