@@ -29,6 +29,8 @@ export default function Home({navigation}) {
   const ClickFuntion = (item) =>{
       navigation.navigate('CardDetails',{item})
     }
+
+    
   return (
     <View>
       <ScrollView>

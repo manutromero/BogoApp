@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState } from 'react'
-import { View , Image, FlatList} from 'react-native';
+import { View ,Text, Image, FlatList} from 'react-native';
 
 
 

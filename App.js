@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { firebase } from './src/firebase/config'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { LoginScreen, HomeScreen, RegistrationScreen, Home ,CardDetails} from './src/screens'
+import { LoginScreen, HomeScreen, RegistrationScreen, Home ,CardDetails, PointItem} from './src/screens'
 import {decode, encode} from 'base-64'
 if (!global.btoa) {  global.btoa = encode }
 if (!global.atob) { global.atob = decode }
@@ -49,6 +49,7 @@ export default function App() {
       <Stack.Navigator>
       <Stack.Screen name="Home" component={Home}  options={{ title: 'BogoApp' }}/>
             <Stack.Screen name="CardDetails" component={CardDetails}  options={{ title: 'Tu Ruta' }}/>
+            <Stack.Screen name="PointItem" component={PointItem}  options={{ title: 'Ruta Interior' }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
