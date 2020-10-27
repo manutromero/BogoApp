@@ -99,8 +99,8 @@ export default function CardDetails(props) {
         return renderMapPin
     }
 
-    const ClickFuntion = () =>{
-        props.navigation.navigate("PointItem")
+    const ClickFuntion = (Element) =>{
+        props.navigation.navigate("PointItem",{Element})
       }
 
     if(Element){
@@ -152,7 +152,7 @@ export default function CardDetails(props) {
                                 />
                             </Content>
                         </View>
-                            <Button block success onPress={() => ClickFuntion()}>
+                            <Button block success onPress={() => ClickFuntion({Element})}>
                                 <Text>Seleccionar Ruta</Text>
                             </Button>  
                         </Card>
