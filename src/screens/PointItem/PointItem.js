@@ -1,8 +1,9 @@
 import React, { Component, useEffect, useState } from 'react'
-import { Image, FlatList} from 'react-native';
+import { Image, FlatList, ScrollView} from 'react-native';
 import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import styles from './style';
+import { WebView } from 'react-native-webview';
 import { Spinner, Container, Header, Content, Icon, Accordion, Text, View , Card, CardItem, Button} from 'native-base';
 
 
@@ -26,7 +27,7 @@ export default function PointItem(props) {
 
 }, [])
 
-
+console.log("DataRoute",DataRoute)
 
 const renderPin = (Element) => {
   let renderMapPin = [];
@@ -42,7 +43,7 @@ const renderPin = (Element) => {
                   origin={ index == 0 ? origin : {latitude:  beforeElement.GeoCoordinates.latitude, longitude: beforeElement.GeoCoordinates.longitude}}
                   destination={{latitude:  element.GeoCoordinates.latitude, longitude: element.GeoCoordinates.longitude}}
                   apikey={GOOGLE_MAPS_APIKEY}
-                  mode={"TRANSIT"}
+                  mode={"WALKING"}
                   strokeWidth={4}
                   strokeColor={element.strokeColor}
               />
@@ -54,21 +55,61 @@ const renderPin = (Element) => {
 
   return (
     <View>
+            <ScrollView>
         {/* INICIO MAPA */}
-        <View>
-            {LATITUDE ? 
-                <MapView initialRegion={{
-                    latitude: LATITUDE,
-                    longitude: LONGITUDE,
-                    latitudeDelta:  0.009,
-                    longitudeDelta:  0.009,
-                }}  style={styles.mapStyle}  showsUserLocation = {true}  >
-                    <MapView.Marker coordinate={origin} />
-                    {renderPin(DataRoute)}
-                </MapView>
-                :  <Spinner color='green' />}
-        </View>
+        <Card>
+            <View>
+                {LATITUDE ? 
+                    <MapView initialRegion={{
+                        latitude: LATITUDE,
+                        longitude: LONGITUDE,
+                        latitudeDelta:  0.009,
+                        longitudeDelta:  0.009,
+                    }}  style={styles.mapStyle}  showsUserLocation = {true}  >
+                        <MapView.Marker coordinate={origin} />
+                        {renderPin(DataRoute)}
+                    </MapView>
+                    :  <Spinner color='green' />}
+            </View>
+        </Card>
             {/* FIN MAPA */}  
+
+            <View>
+                <Card> 
+                    <CardItem header bordered>
+                        <Text>{ DataRoute.Points[0].Point + ". " + DataRoute.Points[0].Title}</Text>
+                    </CardItem>
+                    <CardItem header bordered>
+                        <Text>Dale Play para escuchar la historia</Text>
+                    </CardItem>
+                    <View style={styles.containerWebView}>
+                        <WebView style={styles.containerWebViewMap}
+                            source={{ uri: DataRoute.Points[0].Audio[0].URL }}
+                            />
+                    </View> 
+                    <Image  source={{uri: DataRoute.Image}} style = {{height: 250,width: "100%", resizeMode : 'stretch' }} />
+                    <CardItem header bordered>
+                        <Text>Datos Relacionados</Text>
+                    </CardItem>
+                    <View>
+                        <CardItem header bordered>
+                            <Text>Juan Roa Sierra: El nombre del olvido</Text>
+                        </CardItem>
+                        <CardItem bordered>
+                            <Text>
+                            Pieza au
+                            diovisual sobre Juan Roa Sierra, asesino material de Jorge Eliecer Gaitán y una mirada a 'El Bogotazo' desde la perspectiva del victimario, no de la víctima, apoyada en la película 'Roa' de 2013
+                            </Text>
+                        </CardItem>
+                        <View style={styles.containerWebView}>
+                            <WebView style={styles.containerWebViewMedia}
+                                source={{ uri: 'https://www.youtube.com/embed/xYff-B2rLIU' }}
+                                />
+                        </View> 
+                    </View>
+                </Card>
+            </View>
+        </ScrollView>
   </View>
   );
 
