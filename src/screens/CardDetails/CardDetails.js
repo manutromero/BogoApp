@@ -89,7 +89,7 @@ export default function CardDetails(props) {
                         origin={ index == 0 ? origin : {latitude:  beforeElement.GeoCoordinates.latitude, longitude: beforeElement.GeoCoordinates.longitude}}
                         destination={{latitude:  element.GeoCoordinates.latitude, longitude: element.GeoCoordinates.longitude}}
                         apikey={GOOGLE_MAPS_APIKEY}
-                        mode={"TRANSIT"}
+                        mode={"WALKING"}
                         strokeWidth={4}
                         strokeColor={element.strokeColor}
                     />
