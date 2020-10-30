@@ -87,23 +87,22 @@ const renderPin = (Element) => {
                             source={{ uri: DataRoute.Points[0].Audio[0].URL }}
                             />
                     </View> 
-                    <Image  source={{uri: DataRoute.Image}} style = {{height: 250,width: "100%", resizeMode : 'stretch' }} />
+                    <Image  source={{uri: DataRoute.Points[0].Images[0]}} style = {{height: 250,width: "100%", resizeMode : 'stretch' }} />
                     <CardItem header bordered>
                         <Text>Datos Relacionados</Text>
                     </CardItem>
                     <View>
                         <CardItem header bordered>
-                            <Text>Juan Roa Sierra: El nombre del olvido</Text>
+                            <Text>{DataRoute.Points[0].RelatedData[0].Title}</Text>
                         </CardItem>
                         <CardItem bordered>
                             <Text>
-                            Pieza au
-                            diovisual sobre Juan Roa Sierra, asesino material de Jorge Eliecer Gaitán y una mirada a 'El Bogotazo' desde la perspectiva del victimario, no de la víctima, apoyada en la película 'Roa' de 2013
+                                {DataRoute.Points[0].RelatedData[0].Description}
                             </Text>
                         </CardItem>
                         <View style={styles.containerWebView}>
                             <WebView style={styles.containerWebViewMedia}
-                                source={{ uri: 'https://www.youtube.com/embed/xYff-B2rLIU' }}
+                                source={{ uri: DataRoute.Points[0].RelatedData[0].URL }}
                                 />
                         </View> 
                     </View>

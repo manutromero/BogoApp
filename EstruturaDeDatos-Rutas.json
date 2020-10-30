@@ -40,6 +40,66 @@
             "RelatedData": [
             ]
            
+        },
+        {
+            "Point": 3,
+            "Title": "Museo de botero",
+            "Address": "Cl 11 #4-41",
+            "Description": "Alberga una numerosa colección de obras donadas a Colombia por el artista Fernando Botero con la intención de difundir las artes y la cultura en su país natal. De las obras, 87 corresponden a su colección personal de arte universal y el resto, cerca de 123 piezas, fueron realizadas por el mismo artista.",
+            "GeoCoordinates": "4.596953, -74.073528",
+            "strokeColor": "#222",
+            "Audio":[
+                {
+                    "TitleAudio": "Casa de moneda",
+                    "URL": "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/315560867&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true",
+                }
+            ],
+            "Images": [
+                        "https://firebasestorage.googleapis.com/v0/b/bogoapp-59711.appspot.com/o/CasaDeMoneda.jpg?alt=media&token=c3585ae8-86bd-4b14-99a5-6240e19e706d"
+                    ],
+            "RelatedData": [
+            ]
+           
+        },
+        {
+            "Point": 4,
+            "Title": "Museo de bogota",
+            "Address": "Cra 4 #10-18",
+            "Description": " Ella incluye elementos representativos de la historia como los premios que ha ganado la ciudad, la Urna Centenaria que data de 1911 y otra serie de artículos que eran de uso cotidiano en Bogotá.",
+            "GeoCoordinates": "4.595843, -74.073105",
+            "strokeColor": "#546",
+            "Audio":[
+                {
+                    "TitleAudio": "Casa de moneda",
+                    "URL": "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/315560867&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true",
+                }
+            ],
+            "Images": [
+                        "https://firebasestorage.googleapis.com/v0/b/bogoapp-59711.appspot.com/o/CasaDeMoneda.jpg?alt=media&token=c3585ae8-86bd-4b14-99a5-6240e19e706d"
+                    ],
+            "RelatedData": [
+            ]
+           
+        },
+        {
+            "Point": 5,
+            "Title": "Museo de arte moderno MAMBO",
+            "Address": "Cra 7 #24-22",
+            "Description": "El Museo de Arte Moderno de Bogotá, también conocido como MAMBO, es una de las principales instituciones culturales y artísticas de Colombia.",
+            "GeoCoordinates": "4.610254, -74.069252",
+            "strokeColor": "yelllow",
+            "Audio":[
+                {
+                    "TitleAudio": "Casa de moneda",
+                    "URL": "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/315560867&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true",
+                }
+            ],
+            "Images": [
+                        "https://firebasestorage.googleapis.com/v0/b/bogoapp-59711.appspot.com/o/CasaDeMoneda.jpg?alt=media&token=c3585ae8-86bd-4b14-99a5-6240e19e706d"
+                    ],
+            "RelatedData": [
+            ]
+           
         }
     ],
     "RouteID": "wxSFYhyp6PW0WdlCyCdZu8lbWCB3",
