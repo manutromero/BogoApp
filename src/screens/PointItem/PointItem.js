@@ -28,10 +28,9 @@ export default function PointItem(props) {
 
 }, [])
 
-console.log("DataRoute",DataRoute)
 
 const ChangeRoute = (Element, Accion)=>{ 
-    console.log("Element",Element)
+
     if(Accion == "next"){
         if(Element.DataRoute.Points.length > pointVisible){
             setpointVisible(pointVisible + 1)   
@@ -45,7 +44,6 @@ const ChangeRoute = (Element, Accion)=>{
 
 const renderContent = (Element, pointVisible) => {
     let renderContent = []
-    console.log("Element")
     renderContent.push(
         <Card>
             <CardItem header bordered>
