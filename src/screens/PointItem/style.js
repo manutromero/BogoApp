@@ -26,4 +26,19 @@ export default StyleSheet.create({
         width: '100%',
         marginBottom: 20
       },
+    WrapperBtn:{
+      flex: 1,
+      flexDirection: "row",
+      justifyContent: "space-around",
+      margin: 10
+    },
+    WrapperBtnComplete:{
+      margin: 10
+    },
+    WrapperBtnWidth: {
+      width: "100%",
+      flex: 1,
+      justifyContent: "center",
+      textAlign: "center"
+    }
 })
