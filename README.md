@@ -1,4 +1,4 @@
-# Título del Proyecto
+# BogoApp
 
 Este proyecto conteniene el codigo de la aplicacion bogoApp. Aplicacion que sirve como guia multimedia para la ciudad de bogota
 
