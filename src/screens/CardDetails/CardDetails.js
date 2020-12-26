@@ -119,7 +119,7 @@ export default function CardDetails(props) {
                             </CardItem>
                             <View style={styles.containerWebView}>
                                 <WebView style={styles.containerWebViewMap}
-                                    source={{ uri: 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/439904874&color=%23848c9c&inverse=false&auto_play=false&show_user=true' }}
+                                    source={{ uri: 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/940330768&color=%23ff5500&inverse=false&auto_play=false&show_user=true' }}
                                     />
                             </View> 
                             <CardItem header bordered>
